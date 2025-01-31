@@ -3,12 +3,10 @@
 public class Main {
     public static void main(String[] args)
     {
-        Employee calısan1=new Employee("ayse",2000,45,2020);
+        Employee calisan1=new Employee("ayse",2000,45,1985);
 
-             calısan1.toPrint();
-             calısan1.tax();
-             calısan1.bonus();
-              calısan1.raiseSalary();
+             calisan1.toPrint();
+
 
 
 

@@ -11,18 +11,20 @@ public class Employee
      this.salary=salary;
      this.workHours=workHours;
      this.hireYear=hireYear;
+     tax();
+     bonus();
+     raiseSalary();
 
     }
-    void tax()// maasa uygulanan vergi
+    double tax()// maasa uygulanan vergi
     {
         /*Çalışanın maaşı 1000 TL'den az ise vergi uygulanmayacaktır.
         Çalışanın maaşı 1000 TL'den fazla ise maaşının %3'ü kadar vergi uygulanacaktır.
 */
         if (this.salary >= 1000)
         {
-        salary = (this.salary * 3) / 100;
+        return this.salary * 0.03 ;
 
-            System.out.println("VERGİ :" + this.salary);
         }
         else if (this.salary<1000)
         {
@@ -30,10 +32,10 @@ public class Employee
             System.out.println("MAAŞA VERGİ UYGULANMAYACAK  ");
 
         }
-
+return 0;
 
     }
-void bonus()
+int bonus()
 {
 /*bonus() : Eğer çalışan haftada 40 saatten fazla çalışmış ise fazladan çalıştığı
 her saat başına 30 TL olacak şekilde bonus ücretleri hesaplayacaktır.*/
@@ -41,40 +43,52 @@ her saat başına 30 TL olacak şekilde bonus ücretleri hesaplayacaktır.*/
 
     if (this.workHours>40)
     {
-       salary = (this.workHours-40)*30;
-        System.out.println("BONUS: "+this.salary);
-    }
+       return (this.workHours-40)*30;
 
+    }
+    return 0;
 }
 
-void  raiseSalary()
+double   raiseSalary()
 {
-    if (2021- (this.hireYear)<10)
+    int calismaYili = 2021 - hireYear;
+
+    if (calismaYili < 10) {
+        return this.salary * 0.05;
+
+    } else if (calismaYili > 9 && calismaYili < 20) {
+        return this.salary * 0.10;
+
+
+    } else if (calismaYili > 20) {
+        return this.salary * 0.15;
+
+    }
+
+    return 0;
+}
+
+    void toPrint()
     {
-       salary=(this.salary*105)/100;
-        System.out.println("MAAŞ ARTIŞI = "+this.salary);
+        double tax=tax();
+        int bonush=bonus();
+        double raise=raiseSalary();
+        double ektoplam= (this.salary-tax)+bonush;
+        double toplam=(this.salary-tax)+bonush+raise;
+
+        System.out.println("ÇALISANIN ADI :" +name);
+        System.out.println("MAAŞ : " +this.salary);
+        System.out.println("ÇALISMA SAATİ: " +this.workHours);
+        System.out.println("BAŞLAMA YILI " +this.hireYear);
+        System.out.println("BONUS: "+bonush);
+        System.out.println("VERGİ : "+tax);
+        System.out.println("MAAŞ ARTISI: "+raise);
+        System.out.println("VERGİ + BONUS toplamı: "+ektoplam);
+        System.out.println("TOPLAM MAAŞ: "+toplam);
 
 
     }
-    else if (2021-(this.hireYear)>9 && 2021- (this.hireYear)< 20 )
-    {
-        this.salary=(salary*110)/100;
-        System.out.println("MAAŞ ARTISI: = "+this.salary);
-
-
-    }
-    else if (2021-(this.hireYear)>19)
-    {
-     salary=(this.salary*115)/100;
-        System.out.println("MAAŞ ARTISI : "+this.salary);
-    }
-}
-void toPrint()
-{
-    System.out.println("ÇALISANIN ADI :" +name);
-    System.out.println("MAAŞ : " +this.salary);
-    System.out.println("ÇALISMA SAATİ: " +this.workHours);
-    System.out.println("BAŞLAMA YILI " +this.hireYear);
 
 }
-}
+
+
